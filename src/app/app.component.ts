@@ -5,6 +5,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { gameList } from './metadata/metadata';
 import { DefaultComponent } from './games/default/default.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { TooltipModule } from 'primeng/tooltip';
 
 declare let gtag: Function;
 
@@ -16,7 +18,15 @@ type GameItem = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, DropdownModule, DefaultComponent, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DropdownModule,
+    DefaultComponent,
+    RouterModule,
+    ToggleButtonModule,
+    TooltipModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -25,14 +35,16 @@ export class AppComponent implements AfterViewInit {
   selectedGame: GameItem = this.games[0];
   gameChanged = 0;
 
+  proMode = false;
+
   constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
         gtag('config', 'G-KMP5R7HPKG', {
-          'page_path': event.urlAfterRedirects
+          page_path: event.urlAfterRedirects,
         });
       }
-    })
+    });
   }
 
   ngAfterViewInit(): void {

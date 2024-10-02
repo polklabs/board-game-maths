@@ -31,4 +31,13 @@
     width: 500px;
     max-width: calc(100vw - 16px);
   }
+
+  .mode {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    .p-togglebutton {
+      padding: 4px;
+    }
+  }
 }

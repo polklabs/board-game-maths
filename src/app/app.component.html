@@ -1,18 +1,24 @@
-<div class="game-title-wrapper">
-  <div class="game-title">
-    <p-dropdown
-      [options]="games"
-      [(ngModel)]="selectedGame"
-      (onChange)="gameClicked($event.value)"
-      [checkmark]="true"
-      optionLabel="label"
-      [showClear]="false"
-      placeholder="Select a Game"
-    >
-    </p-dropdown>
-  </div>
-</div>
+<div class="{{ proMode ? 'zach-mode' : '' }}">
+  <div class="game-title-wrapper">
+    <div class="game-title">
+      <p-dropdown
+        [options]="games"
+        [(ngModel)]="selectedGame"
+        (onChange)="gameClicked($event.value)"
+        [checkmark]="true"
+        optionLabel="label"
+        [showClear]="false"
+        placeholder="Select a Game"
+      >
+      </p-dropdown>
+    </div>
 
-<div class="content">
-  <app-default [changeTrigger]="gameChanged"></app-default>
+    <div class="mode">
+      <p-toggleButton [(ngModel)]="proMode" onLabel="Dark" offLabel="Pro" pTooltip="Enable/Disable Pro Mode" />
+    </div>
+  </div>
+
+  <div class="content">
+    <app-default [changeTrigger]="gameChanged"></app-default>
+  </div>
 </div>
